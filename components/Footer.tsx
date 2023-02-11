@@ -17,12 +17,12 @@ function Footer({}: Props) {
         </a>
         and{" "}
         <a
-          href="https://learn.microsoft.com/en-us/azure/search/"
+          href="https://learn.microsoft.com/azure/applied-ai-services/what-are-applied-ai-services"
           target="_blank"
           rel="noreferrer"
           className="font-bold underline-offset-2 transition hover:text-slate-500 hover:underline"
         >
-          Azure Cognitive Search
+          Azure Applied AI Services
         </a>
       </div>
       <div>
