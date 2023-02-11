@@ -5,8 +5,12 @@ import { Inter } from "@next/font/google";
 import Header from "@/components/Header";
 import { useRouter } from "next/router";
 import SearchPage from "./searchPage";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import {
+  LightBulbIcon,
+  MagnifyingGlassIcon,
+} from "@heroicons/react/24/outline";
 import { XCircleIcon } from "@heroicons/react/24/solid";
+import { BeatLoader } from "react-spinners";
 
 interface SearchCaptions {
   text: string;
@@ -136,12 +140,61 @@ export default function HomePage() {
         </div>
         <div className="flex justify-between items-center px-10 py-4 pt-3">
           <div className="">placeholder</div>
-          <div className="text-gray-500">
-            showing {count} {count === 1 ? "result" : "results"} for&nbsp;
-            <span className="font-bold text-xl">what is a noob</span>
-          </div>
+          {searchResults.length > 0 && (
+            <div className="text-gray-500">
+              showing {count} {count === 1 ? "result" : "results"} for&nbsp;
+              <span className="font-bold text-xl">{searchQuery}</span>
+            </div>
+          )}
+
           <div className="flex">sort by XXX</div>
         </div>
+        <div className="flex items-center justify-center">
+          {loading && <BeatLoader color="#000" />}
+        </div>
+        {!loading && (
+          <div>
+            {searchResultsAnswers ? (
+              searchResultsAnswers.map(
+                (searchResultAnswer: SearchResultAnswer) => {
+                  return (
+                    <div
+                      key={searchResultAnswer.key}
+                      className="flex items-start justify-center w-full border bg-white my-2 shadow-xl rounded-xl py-2 px-6 h-32 text-lg"
+                    >
+                      <LightBulbIcon
+                        color="#22c55e"
+                        height={100}
+                        className="pr-2"
+                      />
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html:
+                            searchResultAnswer.highlights.length === 0
+                              ? searchResultAnswer.text
+                              : searchResultAnswer.highlights,
+                        }}
+                      />
+                    </div>
+                  );
+                }
+              )
+            ) : (
+              <div className="mt-20 flex flex-col items-center">
+                <Image
+                  alt="no results"
+                  src="/no-results.svg"
+                  className=""
+                  style={{ objectFit: "contain" }}
+                  width={80}
+                  height={30}
+                />
+                <p className="text-center text-2xl">No results returned</p>
+                <p className="text-center">Try rephrasing or using ChatGPT</p>
+              </div>
+            )}
+          </div>
+        )}
       </main>
     </>
   );
