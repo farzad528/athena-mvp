@@ -11,20 +11,17 @@ import {
 } from "@heroicons/react/24/outline";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import { BeatLoader } from "react-spinners";
-
 interface SearchCaptions {
   text: string;
   highlights: string;
 }
-
 interface SearchResult {
   "@search.score": number;
   "@search.rerankerScore": number;
   "@search.captions": SearchCaptions[];
-  // TODO: Add all your fields to your typescript interface
+  title_en_lucene: string;
+  text_en_lucene: string;
   id: string;
-  title_en_lucene?: string;
-  text_en_lucene?: string;
 }
 
 interface SearchResultAnswer {
@@ -153,19 +150,19 @@ export default function HomePage() {
           {loading && <BeatLoader color="#000" />}
         </div>
         {!loading && (
-          <div>
+          <div className="mx-40">
             {searchResultsAnswers ? (
               searchResultsAnswers.map(
                 (searchResultAnswer: SearchResultAnswer) => {
                   return (
                     <div
                       key={searchResultAnswer.key}
-                      className="flex items-start justify-center w-full border bg-white my-2 shadow-xl rounded-xl py-2 px-6 h-32 text-lg"
+                      className="flex items-center justify-center w-full border-blue-500 border-2 bg-white my-2 shadow-xl rounded-xl py-2 px-6 h-32 text-lg mb-6"
                     >
                       <LightBulbIcon
-                        color="#22c55e"
+                        // color="#22c55e"
                         height={100}
-                        className="pr-2"
+                        className="pr-2 text-blue-500"
                       />
                       <p
                         dangerouslySetInnerHTML={{
@@ -191,6 +188,34 @@ export default function HomePage() {
                 />
                 <p className="text-center text-2xl">No results returned</p>
                 <p className="text-center">Try rephrasing or using ChatGPT</p>
+              </div>
+            )}
+            {!loading && (
+              <div>
+                {searchResults.map((searchResult: SearchResult) => {
+                  return (
+                    <div
+                      key={searchResult.id}
+                      className="flex flex-col items-start w-full border bg-white my-2 shadow-xl rounded-xl py-2 px-6 mb-4"
+                    >
+                      <p className="text-[#4F52B2] hover:underline hover:cursor-pointer text-lg">
+                        {searchResult.title_en_lucene}
+                      </p>
+                      <span className="text-sm">
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html:
+                              searchResult["@search.captions"][0].highlights
+                                .length === 0
+                                ? searchResult["@search.captions"][0].text
+                                : searchResult["@search.captions"][0]
+                                    .highlights,
+                          }}
+                        />
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>
