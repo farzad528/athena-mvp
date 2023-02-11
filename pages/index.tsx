@@ -11,6 +11,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import { BeatLoader } from "react-spinners";
+import Footer from "@/components/Footer";
 interface SearchCaptions {
   text: string;
   highlights: string;
@@ -95,7 +96,7 @@ export default function HomePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className="bg-gray-100  h-screen">
+      <main className="bg-gray-100">
         <div className="h-32 bg-black flex items-center flex-col">
           <div className="text-white text-xl text-center">
             {" "}
@@ -196,7 +197,7 @@ export default function HomePage() {
                   return (
                     <div
                       key={searchResult.id}
-                      className="flex flex-col items-start w-full border bg-white my-2 shadow-xl rounded-xl py-2 px-6 mb-4"
+                      className="flex flex-col items-start w-full border bg-white shadow-xl rounded-xl py-2 px-6 mt-2"
                     >
                       <p className="text-[#4F52B2] hover:underline hover:cursor-pointer text-lg">
                         {searchResult.title_en_lucene}
@@ -221,6 +222,7 @@ export default function HomePage() {
           </div>
         )}
       </main>
+      <Footer />
     </>
   );
 }

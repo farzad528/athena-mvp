@@ -5,7 +5,7 @@ import Router from "next/router";
 
 type Props = {};
 
-const Header = (props: Props) => {
+function Header({}: Props) {
   const returnHome = () => {
     Router.push("/");
   };
