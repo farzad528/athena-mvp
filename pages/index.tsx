@@ -1,14 +1,20 @@
 import Head from "next/head";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import Header from "@/components/Header";
 import { useRouter } from "next/router";
 import SearchPage from "./search";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-
-const inter = Inter({ subsets: ["latin"] });
+import { XCircleIcon } from "@heroicons/react/24/solid";
 
 export default function HomePage() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleClear = () => {
+    setSearchQuery("");
+  };
+
   return (
     <>
       <Head>
@@ -30,7 +36,7 @@ export default function HomePage() {
             to athena
           </div>
           <div className="text-white flex mt-4">
-            <p>powered by OpenAI</p>
+            <p>powered by azure cognitive search</p>
             <Image
               alt="azs icon"
               src="/azs.png"
@@ -48,7 +54,16 @@ export default function HomePage() {
               type="text"
               className="bg-[#FFFFFFCC] focus:outline-0 w-full px-1"
               placeholder={"Type a search query"}
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
             />
+            {searchQuery && (
+              <XCircleIcon
+                width={20}
+                className="text-gray-500"
+                onClick={handleClear}
+              />
+            )}
           </div>
         </div>
       </main>
