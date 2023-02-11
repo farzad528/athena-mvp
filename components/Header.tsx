@@ -1,13 +1,20 @@
 import Link from "next/link";
 import React from "react";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
+import Router from "next/router";
 
 type Props = {};
 
 const Header = (props: Props) => {
+  const returnHome = () => {
+    Router.push("/");
+  };
   return (
     <>
-      <header className="flex justify-between items-center px-10 py-4 shadow-lg">
+      <header
+        className="flex justify-between items-center px-10 py-4 shadow-lg cursor-pointer"
+        onClick={returnHome}
+      >
         {/* Logo */}
         <div className="flex gap-1">
           <h1 className="flex-none uppercase font-bold text-2xl">Athena</h1>
@@ -20,10 +27,10 @@ const Header = (props: Props) => {
               <Link href="/">Home</Link>
             </li>
             <li className="transition duration-300 ease-out hover:ease-in hover:text-blue-600">
-              <Link href="/search">Search</Link>
+              <Link href="/searchPage">Search</Link>
             </li>
             <li className="transition duration-300 ease-out hover:ease-in hover:text-blue-600">
-              <Link href="/tips">Tips</Link>
+              <Link href="/tipsPage">Tips</Link>
             </li>
           </ul>
         </nav>

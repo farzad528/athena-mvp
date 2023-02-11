@@ -6,7 +6,8 @@ type Props = {}
 export default function SearchPage({}: Props) {
   return (
     <>
-    
+      <Header />
+      <div>Search Page</div>
     </>
 
   )
