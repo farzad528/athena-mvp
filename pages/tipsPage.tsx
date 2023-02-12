@@ -6,7 +6,7 @@ type Props = {};
 export default function TipsPage({}: Props) {
   return (
     <>
-      <Header />
+      <Header isAuthenticated={false} />
       <div>TipsPage</div>
     </>
   );

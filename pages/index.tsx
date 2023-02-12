@@ -16,6 +16,7 @@ interface SearchCaptions {
   text: string;
   highlights: string;
 }
+// TODO: Add Search Fields to Interface and Properties
 interface SearchResult {
   "@search.score": number;
   "@search.rerankerScore": number;
