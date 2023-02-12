@@ -95,7 +95,7 @@ export default function HomePage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      <Header isAuthenticated={false} />
       <main className="bg-gray-100">
         <div className="h-32 bg-black flex items-center flex-col">
           <div className="text-white text-xl text-center">

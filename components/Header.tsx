@@ -1,11 +1,14 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 import Router from "next/router";
 
-type Props = {};
+type Props = {
+  isAuthenticated: boolean;
+};
 
 function Header({}: Props) {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const returnHome = () => {
     Router.push("/");
   };
@@ -36,13 +39,23 @@ function Header({}: Props) {
         </nav>
         {/* Login or AVATAR */}
         {/* <UserCircleIcon width={40} /> */}
-        <button className="rounded-3xl bg-blue-500 px-4 py-2 text-white w-36 transition duration-300 ease-out hover:ease-in hover:bg-blue-600">
-          Sign In
-        </button>
+        {!isAuthenticated ? (
+          <button
+            className="rounded-3xl bg-blue-500 px-4 py-2 text-white w-36 transition duration-300 ease-out hover:ease-in hover:bg-blue-600"
+            onClick={() => setIsAuthenticated(true)}
+          >
+            Sign In
+          </button>
+        ) : (
+          <div className="flex items-center gap-1">
+            <UserCircleIcon width={40} className="" />
+            <p>Welcome, Farzad</p>
+          </div>
+        )}
       </header>
       <div className="bg-zinc-800 h-10"></div>
     </>
   );
-};
+}
 
 export default Header;

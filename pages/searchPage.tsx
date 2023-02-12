@@ -6,7 +6,7 @@ type Props = {}
 export default function SearchPage({}: Props) {
   return (
     <>
-      <Header />
+      <Header isAuthenticated={false} />
       <div>Search Page</div>
     </>
 
