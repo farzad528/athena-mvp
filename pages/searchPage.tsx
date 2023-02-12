@@ -5,6 +5,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { BeatLoader } from "react-spinners";
 import { XCircleIcon } from "@heroicons/react/24/solid";
+import { AnimatePresence, motion } from "framer-motion";
 
 type Props = {};
 
@@ -153,20 +154,22 @@ export default function SearchPage({}: Props) {
           {loading && <BeatLoader color="#000" />}
         </div>
         <div>
-          {!loading && (
-            <div className="mx-30">
-              {generatedAnswers && (
-                <div className="mx-10">
-                  <h2>ChatGPT response:</h2>
-                  <div>
-                    <div className="bg-white shadow-md rounded-xl py-2 px-6 mt-2">
-                      <p>{generatedAnswers}</p>
+          <AnimatePresence mode="wait">
+            <motion.div className="space-y-10 my-10">
+              <div className="mx-30">
+                {generatedAnswers && (
+                  <div className="mx-10">
+                    <h2>ChatGPT response:</h2>
+                    <div>
+                      <div className="bg-white shadow-md rounded-xl py-2 px-6 mt-2">
+                        <p>{generatedAnswers}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </div>
-          )}
+                )}
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </main>
     </>
