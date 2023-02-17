@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { count } from "console";
 import Image from "next/image";
 import React, { useState } from "react";
 import { BeatLoader } from "react-spinners";
