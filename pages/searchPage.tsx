@@ -142,10 +142,10 @@ export default function SearchPage({}: Props) {
         <div className="flex justify-between items-center px-10 py-4 pt-3">
           <div className="">placeholder</div>
 
-          <div className="text-gray-500">
+          {/* <div className="text-gray-500">
             showing results for&nbsp;
             <span className="font-bold text-xl">{promptRequest}</span>
-          </div>
+          </div> */}
 
           <div className="flex">sort by XXX</div>
         </div>

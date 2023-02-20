@@ -137,16 +137,17 @@ export default function HomePage() {
             )}
           </div>
         </div>
-        <div className="flex justify-between items-center px-10 py-4 pt-3">
-          <div className="">placeholder</div>
+        <div className="flex justify-center items-center px-10 py-4 pt-3">
+          {/* <div className="">placeholder</div> */}
           {searchResults.length > 0 && (
             <div className="text-gray-500">
-              showing {count} {count === 1 ? "result" : "results"} for&nbsp;
+              showing {count.toLocaleString()}{" "}
+              {count === 1 ? "result" : "results"} for&nbsp;
               <span className="font-bold text-xl">{searchQuery}</span>
             </div>
           )}
 
-          <div className="flex">sort by XXX</div>
+          {/* <div className="flex">sort by XXX</div> */}
         </div>
         <div className="flex items-center justify-center">
           {loading && <BeatLoader color="#000" />}
